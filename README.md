@@ -1,249 +1,173 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 25.2.7.2 (Windows)"/>
-	<meta name="created" content="2025-12-15T14:15:53.992621900"/>
-	<meta name="changed" content="2025-12-15T14:17:47.057435900"/>
-	<style type="text/css">
-		@page { size: 21.59cm 27.94cm; margin: 2cm }
-		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
-		h1 { margin-bottom: 0.21cm; background: transparent; page-break-after: avoid }
-		h1.western { font-family: "Liberation Serif", serif; font-weight: bold; font-size: 24pt }
-		h1.cjk { font-size: 24pt; font-family: "Noto Serif SC"; font-weight: bold }
-		h1.ctl { font-family: "Arial"; font-size: 24pt; font-weight: bold }
-		h2 { margin-top: 0.35cm; margin-bottom: 0.21cm; background: transparent; page-break-after: avoid }
-		h2.western { font-family: "Liberation Serif", serif; font-weight: bold; font-size: 18pt }
-		h2.cjk { font-size: 18pt; font-family: "Noto Serif SC"; font-weight: bold }
-		h2.ctl { font-family: "Arial"; font-size: 18pt; font-weight: bold }
-		pre { background: transparent }
-		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
-		pre.cjk { font-size: 10pt; font-family: "NSimSun", monospace }
-		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
-		td p { orphans: 0; widows: 0; background: transparent }
-		th p { font-weight: bold; orphans: 0; text-align: center; widows: 0; background: transparent }
-		strong { font-weight: bold }
-		code.western { font-family: "Liberation Mono", monospace }
-		code.cjk { font-family: "NSimSun", monospace }
-		code.ctl { font-family: "Liberation Mono", monospace }
-	</style>
-</head>
-<body lang="en-CA" link="#000080" vlink="#800000" dir="ltr">
-<div id="Section1" dir="ltr" href="README.md"><h1 class="western" align="center">
-	AI Career Trend Predictor</h1>
-	<p>This project automatically collects daily technology trends and
-	uses NLP + machine learning to <strong>predict emerging careers in
-	the AI era</strong>.</p>
-	<p>It runs entirely on <strong>free, public data sources</strong>,
-	stores everything locally, and incrementally improves predictions as
-	more data is collected over time.</p>
-	<hr/>
+<b>AI Career Trend Predictor</b>
 
-	<h2 class="western">🚀 What This Project Does</h2>
-	<ul>
-		<li><p>Collects <strong>daily trending tech posts</strong> from:</p>
-		<ul>
-			<li><p>Hacker News</p></li>
-			<li><p>YouTube Trending (no API, HTML scraping)</p></li>
-		</ul>
-		<li><p>Stores data in a <strong>local SQLite database</strong></p></li>
-		<li><p>Uses <strong>sentence embeddings + clustering</strong> to
-		detect emerging topics</p></li>
-		<li><p>Maps trends to <strong>potential future AI job roles</strong></p></li>
-		<li><p>Designed to improve accuracy over <strong>months of data
-		collection</strong></p></li>
-		<li><p>Runs automatically via <strong>cron on Ubuntu</strong></p></li>
-	</ul>
-	<hr/>
+This project automatically collects daily technology trends and uses NLP + machine learning to predict emerging careers in the AI era.
 
-	<h2 class="western">🧠 How the Prediction Works (High Level)</h2>
-	<ol>
-		<li><p>Collect daily post titles</p></li>
-		<li><p>Convert titles to vector embeddings</p></li>
-		<li><p>Cluster similar topics</p></li>
-		<li><p>Extract keywords from each cluster</p></li>
-		<li><p>Map keywords → AI-era job categories</p></li>
-		<li><p>Rank jobs by topic strength and frequency</p></li>
-	</ol>
-	<p>This is an <strong>unsupervised trend discovery system</strong>,
-	not a hard-coded rules engine.</p>
-	<hr/>
+It runs entirely on free, public data sources, stores everything locally, and incrementally improves predictions as more data is collected over time.
 
-	<h2 class="western">🗂 Project Structure</h2>
-	<pre class="western"><code class="western">ai_trends/</code>
-<code class="western">├── </code><code class="western">fetch_data.py        # Daily data collection (HN + YouTube)</code>
-<code class="western">├── </code><code class="western">predict_now.py       # Lightweight predictor (small datasets)</code>
-<code class="western">├── </code><code class="western">predict_jobs.py      # Advanced predictor (large datasets)</code>
-<code class="western">├── </code><code class="western">trends.db            # SQLite database (auto-created)</code>
-<code class="western">├── </code><code class="western">log.txt              # Cron logs</code>
-<code class="western">└── </code><code class="western">README.md</code></pre>
-	<hr/>
+---
+🚀 What This Project Does
 
-	<h2 class="western">🖥 System Requirements</h2>
-	<ul>
-		<li><p>Ubuntu 20.04+</p></li>
-		<li><p>Python 3.9+</p></li>
-		<li><p>Internet connection</p></li>
-		<li><p>~1GB disk space (over months of data)</p></li>
-	</ul>
-	<hr/>
+- Collects daily trending tech posts from:
+   - Hacker News
+   - YouTube Trending (no API, HTML scraping)
+- Stores data in a local SQLite database
+- Uses sentence embeddings + clustering to detect emerging topics
+- Maps trends to potential future AI job roles
+- Designed to improve accuracy over months of data collection
+- Runs automatically via cron on Ubuntu
 
-	<h2 class="western">🐍 Python Setup (Recommended: Virtual
-	Environment)</h2>
-	<pre class="western"><code class="western">sudo apt update</code>
-<code class="western">sudo apt install python3 python3-venv python3-pip build-essential python3-dev</code></pre><p>
-	Create and activate venv:</p>
-	<pre class="western"><code class="western">python3 -m venv venv</code>
-<code class="western">source venv/bin/activate</code></pre><p>
-	Install dependencies:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">pip install requests beautifulsoup4 sentence-transformers scikit-learn pandas hdbscan</code></pre>
-	<hr/>
+---
+🧠 How the Prediction Works (High Level)
 
-	<h2 class="western">📥 Data Collection</h2>
-	<p>Run manually:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">python3 fetch_data.py</code></pre><p>
-	This will:</p>
-	<ul>
-		<li><p>Create <code class="western">trends.db</code> automatically</p></li>
-		<li><p>Insert new daily records</p></li>
-		<li><p>Avoid duplicate failures</p></li>
-	</ul>
-	<p>Verify data:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">sqlite3 trends.db &quot;SELECT COUNT(*) FROM trends;&quot;</code></pre>
-	<hr/>
+- Collect daily post titles
+- Convert titles to vector embeddings
+- Cluster similar topics
+- Extract keywords from each cluster
+- Map keywords → AI-era job categories
+- Rank jobs by topic strength and frequency
 
-	<h2 class="western">⏰ Automatic Daily Collection (Cron)</h2>
-	<p>Edit crontab:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">crontab -e</code></pre><p>
-	Add:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">0 6 * * * /usr/bin/python3 /home/simon/ai_trends/fetch_data.py &gt;&gt; /home/simon/ai_trends/log.txt 2&gt;&amp;1</code></pre><p>
-	Runs every day at <strong>6:00 AM</strong>.</p>
-	<hr/>
+This is an unsupervised trend discovery system, not a hard-coded rules engine.
 
-	<h2 class="western">📊 Prediction (Current Data)</h2>
-	<p>For small datasets (e.g. &lt; 500 records):</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">python3 predict_now.py</code></pre><p>
-	This:</p>
-	<ul>
-		<li><p>Clusters all existing posts</p></li>
-		<li><p>Produces <strong>early AI career predictions</strong></p></li>
-		<li><p>Prints results directly to terminal</p></li>
-	</ul>
-	<p>Example output:</p>
-	<pre class="western"><code class="western">Likely future AI careers:</code>
-<code class="western">- AI/ML Engineer</code>
-<code class="western">- Prompt Engineer</code>
-<code class="western">- Generative AI Specialist</code></pre>
-	<hr/>
+---
+🗂 Project Structure  
+ai_trends/  
+    ├── fetch_data.py        # Daily data collection (HN + YouTube)  
+    ├── predict_now.py       # Lightweight predictor (small datasets)  
+    ├── predict_jobs.py      # Advanced predictor (large datasets)  
+    ├── trends.db            # SQLite database (auto-created)  
+    ├── log.txt              # Cron logs  
+    └── README.md
 
-	<h2 class="western">🔮 Prediction (Long-Term Data)</h2>
-	<p>After weeks or months of data:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">python3 predict_jobs.py</code></pre><p>
-	This version:</p>
-	<ul>
-		<li><p>Uses HDBSCAN (better for large datasets)</p></li>
-		<li><p>Detects emerging topics over time</p></li>
-		<li><p>Writes predictions to <code class="western">predicted_jobs</code>
-		table</p></li>
-	</ul>
-	<p>View predictions:</p>
-	<pre class="western" style="margin-bottom: 0.5cm"><code class="western">sqlite3 trends.db &quot;SELECT * FROM predicted_jobs ORDER BY score DESC;&quot;</code></pre>
-	<hr/>
+---
+🖥 System Requirements
 
-	<h2 class="western">📈 How Accuracy Improves Over Time</h2>
-	<table width="286" cellpadding="2" cellspacing="0">
-		<col width="79"/>
-		<col width="199"/>
-		<thead>
-			<tr>
-				<th width="79" style="border: none; padding: 0cm"><p>Data Age</p>
-				</th>
-				<th width="199" style="border: none; padding: 0cm"><p>Prediction
-					Quality</p>
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td width="79" style="border: none; padding: 0cm"><p>1–7 days</p>
-				</td>
-				<td width="199" style="border: none; padding: 0cm"><p>Prototype /
-					noisy</p>
-				</td>
-			</tr>
-			<tr>
-				<td width="79" style="border: none; padding: 0cm"><p>2–4 weeks</p>
-				</td>
-				<td width="199" style="border: none; padding: 0cm"><p>Early trend
-					detection</p>
-				</td>
-			</tr>
-			<tr>
-				<td width="79" style="border: none; padding: 0cm"><p>2–3 months</p>
-				</td>
-				<td width="199" style="border: none; padding: 0cm"><p>Strong
-					signals</p>
-				</td>
-			</tr>
-			<tr>
-				<td width="79" style="border: none; padding: 0cm"><p>6+ months</p>
-				</td>
-				<td width="199" style="border: none; padding: 0cm"><p>Meaningful
-					career forecasting</p>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<hr/>
+- Ubuntu 20.04+
+- Python 3.9+
+- Internet connection
+- ~1GB disk space (over months of data)
 
-	<h2 class="western">🧩 Why This Is Not a “Typical LLM”</h2>
-	<ul>
-		<li><p>No paid APIs</p></li>
-		<li><p>No retraining giant models</p></li>
-		<li><p>Uses <strong>RAG-style intelligence</strong>:</p>
-		<ul>
-			<li><p>embeddings</p></li>
-			<li><p>clustering</p></li>
-			<li><p>trend growth</p></li>
-		</ul>
-		<li><p>Can later be connected to:</p>
-		<ul>
-			<li><p>LLaMA / Mistral</p></li>
-			<li><p>Hugging Face models</p></li>
-			<li><p>Chat interfaces</p></li>
-		</ul>
-	</ul>
-	<hr/>
+---
+🐍 Python Setup (Recommended: Virtual Environment)  
 
-	<h2 class="western">🛣 Future Roadmap</h2>
-	<ul>
-		<li><p>Trend growth scoring (momentum detection)</p></li>
-		<li><p>Weekly AI career reports</p></li>
-		<li><p>Web dashboard (Flask)</p></li>
-		<li><p>RAG-based LLM interface</p></li>
-		<li><p>Hugging Face model publishing</p></li>
-	</ul>
-	<hr/>
+    sudo apt update
+    sudo apt install python3 python3-venv python3-pip build-essential python3-dev
 
-	<h2 class="western">⚠️ Disclaimer</h2>
-	<p>This project predicts <strong>trends</strong>, not guaranteed job
-	outcomes.<br/>
-It is intended for <strong>exploration, research, and
-	education</strong>.</p>
-	<hr/>
+Create and activate venv:
 
-	<h2 class="western">⭐ Why This Project Matters</h2>
-	<p>As AI automates tasks faster than curricula can adapt,
-	<strong>trend-based career intelligence</strong> becomes critical.
-	This system continuously learns from the tech ecosystem itself —
-	not static job listings.</p>
-	<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+    python3 -m venv venv
+    source venv/bin/activate
 
-	</p>
-</div>
-<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+Install dependencies:
 
-</p>
-</body>
-</html>
+    pip install requests beautifulsoup4 sentence-transformers scikit-learn pandas hdbscan
+
+---
+📥 Data Collection
+
+Run manually:
+
+    python3 fetch_data.py
+
+
+This will:
+
+- Create trends.db automatically
+- Insert new daily records
+- Avoid duplicate failures
+
+Verify data:
+
+    sqlite3 trends.db "SELECT COUNT(*) FROM trends;"
+
+---
+⏰ Automatic Daily Collection (Cron)
+
+Edit crontab:
+
+    crontab -e
+
+Add:
+
+    0 6 * * * /usr/bin/python3 /home/simon/ai_trends/fetch_data.py >> /home/simon/ai_trends/log.txt 2>&1
+
+Runs every day at 6:00 AM.
+
+---
+📊 Prediction (Current Data)
+
+For small datasets (e.g. < 500 records):
+
+    python3 predict_now.py
+
+This:
+
+- Clusters all existing posts
+- Produces early AI career predictions
+- Prints results directly to terminal
+
+Example output:
+
+Likely future AI careers:
+- AI/ML Engineer
+- Prompt Engineer
+- Generative AI Specialist
+
+---
+🔮 Prediction (Long-Term Data)
+
+After weeks or months of data:
+
+    python3 predict_jobs.py
+
+This version:
+
+- Uses HDBSCAN (better for large datasets)
+- Detects emerging topics over time
+- Writes predictions to predicted_jobs table
+
+View predictions:
+
+    sqlite3 trends.db "SELECT * FROM predicted_jobs ORDER BY score DESC;"
+
+---
+📈 How Accuracy Improves Over Time
+| Data Age	| Prediction Quality|
+| ------ | ------ |
+| 1–7 days	| Prototype / noisy |
+| 2–4 weeks	| Early trend detection |
+| 2–3 months	| Strong signals |
+| 6+ months	| Meaningful career forecasting |
+
+---
+🧩 Why This Is Not a “Typical LLM”
+
+- No paid APIs
+- No retraining giant models
+- Uses RAG-style intelligence:
+    - embeddings
+    - clustering
+    - trend growth
+- Can later be connected to:
+    - LLaMA / Mistral
+    - Hugging Face models
+    - Chat interfaces
+
+---
+🛣 Future Roadmap
+
+ - Trend growth scoring (momentum detection)
+ - Weekly AI career reports
+  - Web dashboard (Flask)
+  - RAG-based LLM interface
+  - Hugging Face model publishing
+
+---
+⚠️ Disclaimer
+
+This project predicts trends, not guaranteed job outcomes.
+It is intended for exploration, research, and education.
+
+---
+⭐ Why This Project Matters
+
+As AI automates tasks faster than curricula can adapt, trend-based career intelligence becomes critical. This system continuously learns from the tech ecosystem itself — not static job listings.
