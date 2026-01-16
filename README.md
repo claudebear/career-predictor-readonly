@@ -1,4 +1,3 @@
- AI Career Trends - Project Documentation body { font-family: Arial, sans-serif; line-height: 1.6; margin: 2rem; background-color: #f7f7f7; } h1, h2, h3 { color: #2c3e50; } a { color: #2980b9; text-decoration: none; } a:hover { text-decoration: underline; } code { background: #ecf0f1; padding: 2px 4px; border-radius: 4px; } pre { background: #ecf0f1; padding: 10px; border-radius: 4px; overflow-x: auto; } footer { margin-top: 2rem; font-size: 0.9rem; color: #555; } .container { max-width: 900px; margin: auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
 AI Career Trends Dashboard - Project Documentation
 ==================================================
